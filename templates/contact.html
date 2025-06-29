@@ -1,0 +1,141 @@
+<html>
+    <head>
+        {% comment %} <!------according to greatstack youtuber this helps us to make website more responsive--> {% endcomment %}
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>INDEX</title>
+        <link rel="stylesheet" href="static/css/index.CSS">
+         {% comment %} <!-----fonts from awesome 4 icons bootstreamp cdn path -----> {% endcomment %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    </head>
+    <body>
+        <div class="preloader">
+            <div class="spinner"></div>
+          </div>
+        
+        
+       
+        <section class="sub-header">
+            <nav>
+                <div class="logo">
+                    <a href="/index.html"><img src="static/images/IMAGES/20240121_160914.png"></a>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a href="/index.html">HOME</a></li>
+                        <li><a href="/about.html">ABOUT US</a></li>
+                        <li><a href="/services.html">SERVICES</a></li>
+                        <li><a href="/product_gallery.html">PRODUCT GALLRY</a></li>
+                        <li><a class="active" href="/contact.html">CONTACT US</a></li>
+                        <li><a href="/apo.html" class="hero-btn">APPOINTMENT</a></li>
+                        <li><a href="/more.html">LOGOUT</a></li>
+                        
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+            <h1>CONTACT US</h1>
+        </section>
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"> <!-- Note the space before 'alert-dismissible' -->
+            <strong></strong>{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+          <br>
+          <br>
+        <section class="location">
+            {% comment %} <!---------location is geted by google maps share->embed map mode->copy html code---------> {% endcomment %}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3778.265478144154!2d73.7862589751971!3d18.74167518239528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b7452f2effe9%3A0x24be56eb24ac1b9e!2sMASS%20COATING!5e0!3m2!1sen!2sin!4v1706297552629!5m2!1sen!2sin"
+             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
+            </section>
+            
+
+            <section class="contact-us">
+                <div class="row">
+                    <div class="contact-col">
+                        <div>
+                            <i class="fa fa-home"></i>
+                            <span>
+                                <h5>Chakan, Maharashtra 410501</h5>
+                                <p>Gate No. 258/1/A, Near Hotel Courtyard Marriot,HP Chowk,Khalumbre,Pune.</p>
+                            </span>
+                        </div>
+                        <div>
+                            <i class="fa fa-phone"></i>
+                            <span>
+                                <h5>+91 9049957255</h5>
+                                <p>24/7 in service</p>
+                            </span>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o"></i>
+                            <span>
+                                <h5>masscoating1@gmail.com</h5>
+                                <p>mail us your query</p>
+                            </span>
+                        </div>
+                    </div>
+           
+                    {% comment %} <!----------form-----------> {% endcomment %}
+                    <div class="contact-col">
+                        <form method="post" action="{% url 'contact' %}">
+                            {% csrf_token %}
+                            <input type="text" class= "form-control"  id="name" name="name" placeholder="ENTER YOUR NAME" required>
+                            <input type="email"class= "form-control" id="email" name="email" placeholder="ENTER YOUR EMAIL ADDRESS" required>
+                            <input type="number" class="form-control" id="phone" name="phone" placeholder="ENTER YOUR PHONE NUMBER" required>
+                            <br>
+                            <label for="purpose">subject:</label>
+                            <select id="purpose" name="subject" required>
+                                <option value="" disabled selected>Select Purpose</option>
+                                <option value="Feedback">Feedback</option>
+                                <option value="to contact">to contact</option>
+                            </select>
+                            
+                            
+                            <textarea rows="8"class= "form-control" id="Message" name="Message" placeholder="MESSAGE" required></textarea>
+                            <button class"btn btn-primary" type="submit">SEND FEEDBACK</button>
+                        </form>
+                </div>
+                    </div>
+                    
+            </section>
+            {% comment %} <!--------footer--> {% endcomment %}
+            <section class="footer">
+                <h3>About Us</h3>
+                <p>MASS COATING is a partnership firm formed since 15th Feb 2016 .The company's registered office is at Bhosari,Pune.<br> The firm is engaged in offering Shot blassting,
+                    Powder Coating and Painting job work to automotive,earthmoving and agricultural components for export and domestic buisness.<br>Our plant is at Khalumbare,(Chakan)
+                    indistrial area.</p>
+                    <div class="icons">
+                        <i class="fa fa-instagram"></i>
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-linkedin"></i>
+                    </div>
+            </section>
+            <script>
+                // Hide the preloader after 1 second
+                setTimeout(function () {
+                  const preloader = document.querySelector('.preloader');
+                  preloader.classList.add('hide');
+                }, 700); // 1000 milliseconds = 1 second
+              </script>
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+    </body>
+    </html>
+     
+
+
+    

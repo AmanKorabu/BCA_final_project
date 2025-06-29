@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <!-- Add any CSS styles you want for the form -->
+</head>
+<body>
+    <h1>Update Profile</h1>
+    <form method="POST" action="{% url 'profile_update' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <!-- Form fields for updating the profile -->
+        <!-- Example: -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="{{ user.username }}">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}">
+        
+        <!-- Include other fields such as bio, contact, etc. -->
+
+        <button type="submit">Update Profile</button>
+    </form>
+</body>
+</html>

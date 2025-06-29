@@ -1,0 +1,7 @@
+1.latest appointment/contacts  on top.
+2.access of pages like index.html/ on searchbar will not be provided.
+3.take appointment from here.
+4.total in this month.
+5.show record of previous months.
+6.refresh itself.
+7.default invoice no.

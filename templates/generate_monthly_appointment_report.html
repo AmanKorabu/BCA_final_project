@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .header {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            margin: auto;
+            margin-top: 50px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="header">Admin Dashboard</div>
+        <a href="/apo.html">Take Appointments</a>
+        <a href="/appointments/">Appointments</a>
+        <a href="/contacts/">Contact Details</a>
+        <a href="/invoice.html">Service invoice</a>
+        <a href="/get_invoices.html">Invoices</a>
+        <a href="/generate_monthly_report_form/">Report of Invoices</a>
+        <a href="/generate_monthly_appointment_report/">Report of Appointments</a>
+        <a href="/admin/massp/product/add/">Add Product Pic</a>  
+        <a href="/more.html">Logout</a>
+    </div>
+    <div class="container">
+        <h1>Monthly Appointment Report</h1>
+        <form action="{% url 'generate_monthly_report_appointment' %}" method="get">
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="2022" max="2030" required><br><br>
+            <label for="month">Month:</label>
+            <select id="month" name="month" required>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select><br><br>
+            <button type="submit">Download Report</button>
+        </form>
+    </div>
+</body>
+</html>

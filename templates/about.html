@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <head>
+        {% comment %} <!------according to greatstack youtuber this helps us to make website more responsive--> {% endcomment %}
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>ABOUT US</title>
+        <link rel="stylesheet" href="static/css/index.CSS">
+         {% comment %} <!-----fonts from awesome 4 icons bootstreamp cdn path -----> {% endcomment %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="preloader">
+            <div class="spinner"></div>
+          </div>
+        
+         
+        <section class="header">
+            <nav>
+                <a href="/index.html"><img src="static/images/IMAGES/20240121_160914.png"></a>
+                <div class="nav-links" id="navLinks">
+                    {% comment %} <!-----fonts from awesome 4 icons bootstramp -----> {% endcomment %}
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a href="/index.html">HOME</a></li>
+                        <li><a class="active" href="/about.html">ABOUT US</a></li>
+                        <li><a href="/services.html">SERVICES</a></li>
+                        <li><a href="/product_gallery.html">PRODUCT GALLRY</a></li>
+                        <li><a href="/contact.html">CONTACT US</a></li>
+                        <li><a href="/apo.html" class="hero-btn">APPOINTMENT</a></li>
+                        <li><a href="/more.html">LOGOUT</a></li>
+                        
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+           
+            <div class="sectionA">
+                <br>
+                <br>
+                <br>
+                <div class="heroA">
+                    <h1>ABOUT US</h1>
+                    <br>
+                    <br>
+                    <br>
+                        <img src="/static/images/IMAGES/[FREE - HDconvert.com] logo.jpg">
+                        <br>
+                        <br>
+                        <p>MASS COATING is a partnership firm formed since 15th Feb 2016. The company’s 
+                            registered office is at Bhosari,Pune. The firm is engaged in offering Shot Blasting, 
+                            Powder Coating and Painting job work to automotive, earthmoving & agricultural 
+                            components for export and domestic business. Our plant is at Khalumbre (Chakan) 
+                            Industrial Area.
+                        </p>
+                        <br>
+                        <br>
+                        <u><h2>GOALS & OBJECTIVES</h2></u>
+                        <br>
+                        <br>
+                        <li>Customer should be satisfied by their requirement in required time.</li>
+                        <li>Zero base rejection.</li>
+                        <li> Maintaining good & healthy relationship with customers & suppliers.</li>
+                        <li>Being first preference to every customer</li>
+                        <li>Being well known company in coating & painting industry</li>
+                    </div>
+            </div>
+            <section class="Icon">
+            <div class="icons">
+                <a href="https://www.instagram.com/mass_coating?utm_source=qr&igsh=bzV3NTVjbnVzZjA5" i class="fa fa-instagram"></a></i>
+                 <a href="https://www.facebook.com/masscoating?mibextid=ZbWKwL" i class="fa fa-facebook"></a></i>
+                  <a href="https://www.linkedin.com/company/mass-coating/" i class="fa fa-linkedin"></a></i>
+                  <p>©️2015 MASS COATING PVT.LTD AQC MIDDLE EAST LLC</p>
+                </div>
+        </section>
+        </section>
+        <br>
+        <br>
+        <br>
+        <script>
+            // Hide the preloader after 1 second
+            setTimeout(function () {
+              const preloader = document.querySelector('.preloader');
+              preloader.classList.add('hide');
+            }, 700); // 1000 milliseconds = 1 second
+          </script>
+
+           
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+    </body>
+    </html>

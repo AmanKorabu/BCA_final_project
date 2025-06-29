@@ -1,0 +1,100 @@
+<html>
+    <head>
+        {% comment %} <!------according to greatstack youtuber this helps us to make website more responsive--> {% endcomment %}
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>INDEX</title>
+        <link rel="stylesheet" href="static/css/index.CSS">
+
+         {% comment %} <!-----fonts from awesome 4 icons bootstreamp cdn path -----> {% endcomment %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="preloader">
+            <div class="spinner"></div>
+          </div>
+        
+        <section class="sub-header">
+            <nav>
+                <a href="/index.html"><img src="static/images/IMAGES/20240121_160914.png"></a>
+                <div class="nav-links" id="navLinks">
+                    {% comment %} <!-----fonts from awesome 4 icons bootstramp -----> {% endcomment %}
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a href="/index.html">HOME</a></li>
+                        <li><a href="/about.html">ABOUT US</a></li>
+                        <li><a class="active" href="/services.html">SERVICES</a></li>
+                        <li><a href="/product_gallery.html">PRODUCT GALLRY</a></li>
+                        <li><a href="/contact.html">CONTACT US</a></li>
+                        <li><a href="/apo.html" class="hero-btn">APPOINTMENT</a></li>
+                        <li><a href="/more.html">LOGOUT</a></li>
+                        
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+            <h1>SERVICES</h1>
+        </section>
+                <section class="services">
+                    <div class="row">
+                        <div class="service-col1">
+                            <br>
+                            <h2>SHOT BLASTING SERVICES</h2>
+                            <p>click on photo for more info</p>
+                            <br>
+                           <a href="/shotblasting.html"><img src="static/images/img/shotblasting.jpeg"></a>
+                            
+                        </div>
+                        <br>
+                        <div class="service-col1">
+                            <h3>INDUSTRIAL PAINTING SERVICES</h3>
+                            <br>
+                            <a href="/industrial.html"><img src="static/images/INDimg/WhatsApp Image 2024-01-31 at 12.16.21.jpeg"></a>
+                        </div>
+                        <br>
+                        <div class="service-col1">
+                            <h3> POWDER COATING SERVICES</h3>
+                            <br>
+                            <a href="/powdercoating.html"><img src="static/images/IMAGES/Polish_20240125_151709746.jpg"></a>
+                            
+                        </div>
+                    </div>
+                    </div>
+                </section>
+                {% comment %} <!------contact----> {% endcomment %}
+                <section class="ct">
+                    <h1>Get appointment to meet and get more information from us.</h1>
+                    <a href="/apo.html" class="hero-btn">Take</a>
+                </section>
+        
+                {% comment %} <!--------footer--> {% endcomment %}
+                <section class="footer">
+                    <h3>About Us</h3>
+                    <p>MASS COATING is a partnership firm formed since 15th Feb 2016 .The company's registered office is at Bhosari,Pune.<br> The firm is engaged in offering Shot blassting,
+                        Powder Coating and Painting job work to automotive,earthmoving and agricultural components for export and domestic buisness.<br>Our plant is at Khalumbare,(Chakan)
+                        indistrial area.</p>
+                        <div class="icons">
+                            <a href="https://www.instagram.com/mass_coating?utm_source=qr&igsh=bzV3NTVjbnVzZjA5" i class="fa fa-instagram"></a></i>
+                            <a href="https://www.facebook.com/masscoating?mibextid=ZbWKwL" i class="fa fa-facebook"></a></i>
+                             <a href="https://www.linkedin.com/company/mass-coating/" i class="fa fa-linkedin"></a></i>
+                        </div>
+                </section>
+
+                <script>
+                    // Hide the preloader after 1 second
+                    setTimeout(function () {
+                      const preloader = document.querySelector('.preloader');
+                      preloader.classList.add('hide');
+                    }, 700); // 1000 milliseconds = 1 second
+                  </script>
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+    </body>
+    </html>

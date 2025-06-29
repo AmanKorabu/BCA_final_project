@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #007bff;
+        }
+
+        .form-group input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group .account-option {
+            margin-top: 10px;
+            text-align: center;
+            color: #555;
+        }
+
+        .form-group .account-option a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-group .account-option a:hover {
+            text-decoration: underline;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        .blink {
+            animation: blink 1s infinite;
+        }
+        @media  screen and (max-width:760px){
+           
+            .container{
+                width:auto;
+                display:block;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show {% if 'Passwords do not match' in message %}text-danger{% endif %}" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+    <div class="container">
+        <h2>Signup</h2>
+        <form  method="post" id="signupForm">
+            {% csrf_token %}
+             <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="last_name" required>
+            </div>
+            <div class="form-group">
+               
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+             <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div> 
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span class="error-message" id="passwordError"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Signup">
+            </div>
+            <div class="form-group account-option">
+                <span>Already have an account?<a href="{% url 'login' %}">Login</a></span>
+            </div>
+        </form>
+    </div>
+    <script>
+        document.getElementById('signupForm').onsubmit = function() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                document.getElementById('passwordError').innerText = 'Passwords do not match';
+                return false;
+            } else {
+                document.getElementById('passwordError').innerText = '';
+                return true;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+    <head>
+        {% comment %} <!------according to greatstack youtuber this helps us to make website more responsive--> {% endcomment %}
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <title>INDEX</title>
+        <link rel="stylesheet" href="/static/css/index.CSS">
+         {% comment %} <!-----fonts from awesome 4 icons bootstreamp cdn path -----> {% endcomment %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        
+        <div class="preloader">
+            <div class="spinner"></div>
+          </div>
+        
+        
+        <section class="header" style="background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(/static/images/OptiFlex-Pro-Spraying-Blue.jpg);height: 100vh;
+        width: 100%;background-position: center;
+        background-size: cover;
+        position: relative;">
+            <nav>
+                <a href="index.html"><img src="static/images/IMAGES/20240121_160914.png"></a>
+                <div class="nav-links" id="navLinks">
+                    {% comment %} <!-----fonts from awesome 4 icons bootstramp -----> {% endcomment %}
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
+                    <ul>
+                        <li><a class="active" href="/index.html">HOME</a></li>
+                        <li><a href="/about.html">ABOUT US</a></li>
+                        <li><a href="/services.html">SERVICES</a></li>
+                        <li><a href="/product_gallery.html">PRODUCT GALLRY</a></li>
+                        <li><a href="/contact.html">CONTACT US</a></li>
+                        <li><a href="/apo.html" class="hero-btn">APPOINTMENT</a></li> 
+                        <li><a href="/more.html">LOGOUT</a></li>
+                    </ul>
+                </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </nav>
+        <div class="text-box">
+            <h1>MASS COATING</h1>
+            <P> WELCOME TO OUR WEBSITE</P>
+            <a href="/visitUs.html" class="hero-btn">Click Here To Know More</a>
+          
+        </div>
+        
+
+        </section>
+        <section class="customer">
+           <h1>GLOBAL CUSTOMERS</h1>
+           <p>OUR VALUEABLE CUSTOMERS</p>
+             <div class="row">
+            <div class="customer-col">
+                <img src="static/images/img/images.png">
+                <img src="static/images/img/Epiroc_Logo.png">
+                <img src="static/images/img/images (2).png"><br><br>
+                <img src="static/images/img/unnamed.jpg">
+                <img src="static/images/img/download-1-546.png">
+                <img src="static/images/img/jd_wg_combinedlogo_pantone_vertical_hi_1680x945.jpg">
+                <img src="static/images/img/1639837757713.jpeg">
+                <img src="static/images/img/KUBOTA-EUROPE-Sas-Filiale-Italiana-1x1-1-696x696.jpg">
+                
+                <div class="layer"></div>
+            </div>
+    </div>
+        </section>
+        <br>
+        <section class="team">
+            <h1>MEET THE TEAM</h1>
+            <div class="row1">
+            <div class="team-col">
+                <h3>Smart</h3>
+                <p>MASS COATING has highly qualified and experienced team with knowledge of paint and powder coating applications.</p>
+            </div>
+            <div class="team-col">
+                <h3>Understandig</h3>
+            <p>We are better in understanding the customers specified needs for the new projects and developments.</p>
+            </div>
+            <div class="team-col">
+                <h3>Reputation</h3>
+            <p>We are serving the reputed and multinational companies.</p>
+        </div>
+            </div>
+        </section>
+        {% comment %} <!------contact----> {% endcomment %}
+        <section class="ct">
+            <h1>To get an appointment click below. </h1>
+            <a href="/apo.html" class="hero-btn">Take</a>
+        </section>
+
+
+        {% comment %} <!--------footer--> {% endcomment %}
+        <section class="footer">
+            <h3>About Us</h3>
+            <p>MASS COATING is a partnership firm formed since 15th Feb 2016 .The company's registered office is at Bhosari,Pune.<br> The firm is engaged in offering Shot blassting,
+                Powder Coating and Painting job work to automotive,earthmoving and agricultural components for export and domestic buisness.<br>Our plant is at Khalumbare,(Chakan)
+                indistrial area.</p>
+                <div class="icons">
+                    <a href="https://www.instagram.com/mass_coating?utm_source=qr&igsh=bzV3NTVjbnVzZjA5" i class="fa fa-instagram"></a></i>
+                     <a href="https://www.facebook.com/masscoating?mibextid=ZbWKwL" i class="fa fa-facebook"></a></i>
+                      <a href="https://www.linkedin.com/company/mass-coating/" i class="fa fa-linkedin"></a></i>
+                </div>
+                <p>©️2015 MASS COATING PVT.LTD AQC MIDDLE EAST LLC</p>
+        </section>
+        <script>
+            // Hide the preloader after 1 second
+            setTimeout(function () {
+              const preloader = document.querySelector('.preloader');
+              preloader.classList.add('hide');
+            }, 700); // 1000 milliseconds = 1 second
+          </script>
+
+
+
+            {% comment %} <!--------------javascript -----------> {% endcomment %}
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+        {% comment %} <!---------js end--------> {% endcomment %}
+    </body>
+</html>

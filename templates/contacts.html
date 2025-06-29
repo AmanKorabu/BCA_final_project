@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .header {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 3px 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+       
+            <div class="header">Admin Dashboard</div>
+            <a href="/apo.html">Take Appointments</a>
+            <a href="/appointments/">Appointments</a>
+            <a href="/contacts/">Contact Details</a>
+            <a href="/invoice.html">Service invoice</a>
+            <a href="/get_invoices.html">Invoices</a>
+            <a href="/generate_monthly_report_form/">Report of Invoices</a>
+         <a href="/generate_monthly_appointment_report/">Report of Appointments</a>
+         <a href="/admin/massp/product/add/">Add Product Pic</a> 
+            
+            <a href="/more.html">Logout</a>
+    </div>
+    <div class="content">
+        <h2> Dashboard</h2>
+      
+        <div>
+
+            <h1>Feedback/Contact-Us</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Action</th> <!-- Add a new column for delete action -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts reversed %} {# Notice the reversed filter here #}
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.Phone }}</td>
+                            <td>{{ contact.subject }}</td>
+                            <td>{{ contact.Message }}</td>
+                            <td><button class="delete-btn" onclick="deleteContact('{{ contact.id }}')">Delete</button></td> <!-- Add delete button -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function deleteContact(contactId) {
+            // Send an AJAX request to your Django backend to delete the contact
+            fetch(`/delete_contact/${contactId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Contact deleted successfully.');
+                    window.location.reload(); // Refresh the page after successful deletion
+                } else {
+                    console.error('Failed to delete contact.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

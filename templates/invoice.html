@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .header {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        {% comment %} table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        } {% endcomment %}
+        
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="header">Admin Dashboard</div>
+        <a href="/apo.html">Take Appointments</a>
+        <a href="/appointments/">Appointments</a>
+        <a href="/contacts/">Contact Details</a>
+        <a href="/invoice.html">Service invoice</a>
+        <a href="/get_invoices.html">Invoices</a>
+        <a href="/generate_monthly_report_form/">Report of Invoices</a>
+        <a href="/generate_monthly_appointment_report/">Report of Appointments</a>
+        <a href="/admin/massp/product/add/">Add Product Pic</a> 
+       
+        
+        <a href="/more.html">Logout</a>
+    </div>
+    <div class="content">
+        <h2> SERVICE INVOICE</h2>
+      
+        
+  
+
+    <form id="receiptForm" method="post">
+        {% csrf_token %}
+          <!-- Your company logo and details -->
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="static/images/IMAGES/20240121_160914.png" alt="Your Company Logo" style="max-width: 70px; display: inline-block; vertical-align: middle;">
+            <h2 style="display: inline-block; vertical-align: middle;">MASS COATING COMPANY</h2>
+        <p style="margin-left:250px; font-size:12px;">GAT NO.258/1, NEAR HOTEL MARROIT COURTYARD, KHALUMBRE, CHAKAN, PUNE-410501</p>
+        <p style="margin-left:250px;font-size:12px;" >Email: masscoating@gmail.com</p>
+        <p style="margin-left:250px;font-size:12px;" >Tel: 9049957255</p>
+    </div>
+    <hr style=" width: 510px; border: 2px solid black;">
+        <br>
+        <!-- Customer details -->
+        <label for="customer_name">Customer Name:</label><br>
+        <input type="text" id="customer_name" name="customer_name" required><br><br>
+
+        <label for="customer_address">Customer Address:</label><br>
+        <textarea id="customer_address" name="customer_address" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="customer_contact">Customer Contact:</label><br>
+        <input type="text" id="customer_contact" name="customer_contact"required><br><br>
+
+        <!-- Invoice details -->
+        <label for="invoice_no">Invoice No:</label><br>
+        <input type="text" id="invoice_no" name="invoice_no" value="INV2024001"><br><br>
+
+        <!-- Invoice details -->
+<label for="invoice_date">Invoice Date:</label><br>
+<input type="date" id="invoice_date" name="invoice_date" value="<%= currentDate() %>"><br><br>
+
+<!-- Script to get current date -->
+<script>
+    function currentDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        return today;
+    }
+</script>
+
+
+        <!-- Select Service -->
+        <label for="service">Select Service:</label><br>
+        <select id="service" name="service" onchange="updateCharges()">
+            <option value="Shot Blasting">Shot Blasting</option>
+            <option value="Powder Coating">Powder Coating</option>
+            <option value="Painting Material">Painting Material</option>
+        </select><br><br>
+
+        <!-- Charges -->
+        <label for="charges">Charges:</label><br>
+        <input type="text" id="charges" name="charges" readonly><br><br>
+
+        <!-- Subtotal -->
+        <label for="subtotal">Subtotal:</label><br>
+        <input type="text" id="subtotal" name="subtotal" readonly><br><br>
+
+        <!-- CGST -->
+        <label for="cgst">CGST (9%):</label><br>
+        <input type="text" id="cgst" name="cgst" readonly><br><br>
+
+        <!-- SGST -->
+        <label for="sgst">SGST (9%):</label><br>
+        <input type="text" id="sgst" name="sgst" readonly><br><br>
+
+        <!-- Grand Total -->
+        <label for="grand_total">Grand Total:</label><br>
+        <input type="text" id="grand_total" name="grand_total" readonly><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Generate Receipt</button>
+    </form>
+
+    <script>
+        
+        function updateCharges() {
+            var serviceSelect = document.getElementById('service');
+            var chargesInput = document.getElementById('charges');
+            var subtotalInput = document.getElementById('subtotal');
+            var cgstInput = document.getElementById('cgst');
+            var sgstInput = document.getElementById('sgst');
+            var grandTotalInput = document.getElementById('grand_total');
+
+            // Sample charges for different services
+            var chargesMap = {
+                'Shot Blasting': 5000,
+                'Powder Coating': 7500,
+                'Painting Material': 10000
+            };
+
+            // Get selected service
+            var selectedService = serviceSelect.value;
+
+            // Update charges and other fields based on selected service
+            chargesInput.value = chargesMap[selectedService].toFixed(2);
+            subtotalInput.value = chargesMap[selectedService].toFixed(2);
+            cgstInput.value = (chargesMap[selectedService] * 0.09).toFixed(2);
+            sgstInput.value = (chargesMap[selectedService] * 0.09).toFixed(2);
+            grandTotalInput.value = (parseFloat(subtotalInput.value) + parseFloat(cgstInput.value) + parseFloat(sgstInput.value)).toFixed(2);
+        }
+
+        // Call updateCharges() initially to set default values
+        document.addEventListener("DOMContentLoaded", function() {
+            updateCharges();
+        });
+        {% comment %} document.getElementById("receiptForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Perform validation checks
+            var nameInput = document.getElementById("customer_name").value;
+            var addressInput = document.getElementById("customer_address").value;
+            var contactInput = document.getElementById("customer_contact").value;
+
+            if (nameInput.length < 3) {
+                alert("Name is too short. Please enter a valid name.");
+                return; // Stop form submission
+            }
+
+            if (addressInput.length < 10) {
+                alert("Address is too short. Please enter a valid address.");
+                return; // Stop form submission
+            }
+
+            if (contactInput.length > 10) {
+                alert("Contact number is too long. Please enter a valid contact number.");
+                return; // Stop form submission
+            }
+
+            // Your AJAX request or form submission code here
+
+            // Show success alert
+            alert("Receipt generated successfully!");
+        }); {% endcomment %}
+    </script>
+</body>
+</html>

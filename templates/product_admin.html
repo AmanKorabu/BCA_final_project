@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .header {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .product-photo {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+            padding: 3px 8px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-btn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="header">Admin Dashboard</div>
+        <a href="/apo.html">Take Appointments</a>
+        <a href="/appointments/">Appointments</a>
+        <a href="/contacts/">Contact Details</a>
+        <a href="/invoice.html">Service invoice</a>
+        <a href="/get_invoices.html">Invoices</a>
+        <a href="/generate_monthly_report_form">Report of Invoices</a>
+        <a href="/generate_monthly_appointment_report">Report of Appointments</a>
+        <a href="/more.html">Logout</a>
+    </div>
+    <div class="content">
+        <h2>Dashboard</h2>
+        <form action="{% url 'add_product' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="product_name">Name:</label>
+            <input type="text" id="product_name" name="product_name">
+            <label for="product_description">Description:</label>
+            <textarea id="product_description" name="product_description"></textarea>
+            <label for="product_photo">Photo:</label>
+            <input type="file" id="product_photo" name="product_photo" accept="image/*">
+            <input type="submit" value="Add Product">
+        </form>
+        <div>
+            <h1>Products</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                    <tr>
+                        <td><img src="{{ product.photo.url }}" alt="{{ product.name }}" class="product-photo"></td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td><button class="delete-btn" onclick="deleteProduct('{{ product.id }}')">Delete</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function deleteProduct(productId) {
+            fetch(`/delete_product/${productId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Product deleted successfully.');
+                    window.location.reload();
+                } else {
+                    console.error('Failed to delete product.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

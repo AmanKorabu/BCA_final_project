@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <style>
+        /* Basic CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url('/static/css/OptiFlex-Pro-Spraying-Blue.jpg');
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .action-buttons {
+            display: flex;
+        }
+        .action-buttons a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .action-buttons a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert"> <!-- Note the space before 'alert-dismissible' -->
+        <strong></strong>{{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    
+    <div class="container">
+        <h2>Appointment Management</h2>
+        
+        <!-- Appointment Form for Creating and Updating -->
+        <form method="post">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Time:</label>
+            <select id="time" name="time" required>
+                <option value="" disabled selected>Select Time</option>
+                <!-- JavaScript will populate time options here -->
+            </select>
+            
+            <script>
+                // Populate time options from 9:00 AM to 5:00 PM with 30-minute intervals
+                var selectTime = document.getElementById("time");
+                var startTime = 9;
+                var endTime = 17;
+                var interval = 30;
+                
+                for (var hour = startTime; hour <= endTime; hour++) {
+                    for (var minute = 0; minute < 60; minute += interval) {
+                        var time = (hour < 10 ? '0' : '') + hour + ':' + (minute < 10 ? '0' : '') + minute;
+                        var option = document.createElement("option");
+                        option.text = time;
+                        option.value = time;
+                        selectTime.appendChild(option);
+                    }
+                }
+            </script>
+            
+            <label for="purpose">Purpose of Appointment:</label>
+            <select id="purpose" name="purpose" required>
+                <option value="" disabled selected>Select Purpose</option>
+                <option value="For coating materials">For coating materials</option>
+                <option value="taking visit">Taking Visit</option>
+                <option value="to reqruite">To Rcruite</option>
+                <option value="For visit">For taking Visit</option>
+                <option value="Other">Other</option>
+                <!-- Add more options as needed -->
+            </select>
+            
+            <label for="note">Note:</label>
+            <textarea id="note" name="note"></textarea>
+            
+            
+            <input type="submit" id="submitBtn" value="Submit" >
+            <input type="hidden" id="appointmentId" name="appointmentId">
+            <a href="/index.html" style="font-size: 20px;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
