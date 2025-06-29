@@ -22,6 +22,18 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+import os
+from pathlib import Path
+from django.contrib.messages import constants as messages
+from decouple import config  # Only once
+
+# BASE_DIR
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# SECURITY
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 # APPLICATIONS
 INSTALLED_APPS = [
