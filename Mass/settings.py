@@ -5,7 +5,7 @@ Django settings for Mass project.
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-from decouple import config  # Secure settings from .env
+from decouple import config
 
 # BASE_DIR
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,18 +22,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-import os
-from pathlib import Path
-from django.contrib.messages import constants as messages
-from decouple import config  # Only once
-
-# BASE_DIR
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# SECURITY
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 # APPLICATIONS
 INSTALLED_APPS = [
@@ -49,7 +37,7 @@ INSTALLED_APPS = [
 # MIDDLEWARE
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # For static file handling in production
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Static file handling
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,6 +94,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if os.environ.get('RENDER'):
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -117,4 +107,6 @@ MESSAGE_TAGS = {
     50: 'critical',
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Only if you're using crispy forms:
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
