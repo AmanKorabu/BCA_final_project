@@ -168,7 +168,7 @@ nav .fa {
         background: #1fa9fe;
         z-index: 1001;
         transition: right 0.3s ease;
-        padding-top: 60px;
+        padding-top: 10px;
         text-align: left;
     }
 
