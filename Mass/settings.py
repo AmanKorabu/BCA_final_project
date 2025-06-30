@@ -89,24 +89,25 @@ TIME_ZONE = 'Asia/Kolkata'
 USE_I18N = True
 USE_TZ = True
 
-# STATIC & MEDIA FILES
+# STATIC FILES (for Render + WhiteNoise)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Your custom static files folder
+STATIC_ROOT = BASE_DIR / 'staticfiles'    # Where collectstatic will collect
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-if os.environ.get('RENDER'):
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+# MEDIA FILES
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # OTHER SETTINGS
 APPEND_SLASH = False
+
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     50: 'critical',
 }
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Only if you're using crispy forms:
+# Only if you're using crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
