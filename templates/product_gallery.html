@@ -7,10 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .containerG {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
             padding: 20px;
             margin: auto;
             max-width: 1200px;
@@ -20,13 +19,12 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             overflow: hidden;
-            width: 100%; 
+            width: 100%;
         }
 
         .card img {
-            width: 100%;
+            width:100%;
             height: auto;
-            /* margin: 5em;  */
         }
 
         .intro {
@@ -54,10 +52,9 @@
             font-size: 24px;
         }
 
-        @media screen and (max-width: 700px) {
+        @media screen and (max-width: 768px) {
             .containerG {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-               
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
         }
     </style>
@@ -76,7 +73,7 @@
                 <li><a href="/index.html">HOME</a></li>
                 <li><a href="/about.html">ABOUT US</a></li>
                 <li><a href="/services.html">SERVICES</a></li>
-                <li><a class="active" href="product_gallery.html">PRODUCT GALLRY</a></li>
+                <li><a class="/active" href="product_gallery.html">PRODUCT GALLRY</a></li>
                 <li><a href="/contact.html">CONTACT US</a></li>
                 <li><a href="/apo.html" class="hero-btn">APPOINTMENT</a></li>
                 <li><a href="/more.html">LOGOUT</a></li>
@@ -104,35 +101,40 @@
     <a href="/apo.html" class="hero-btn">Take</a>
 </section>
 
-<section class="footer">
-    <h3>About Us</h3>
-    <p>MASS COATING is a partnership firm formed since 15th Feb 2016. The company's registered office is at Bhosari, Pune. The firm is engaged in offering Shot blasting,
-        Powder Coating and Painting job work to automotive, earthmoving, and agricultural components for export and domestic business. Our plant is at Khalumbare, (Chakan)
-        industrial area.</p>
-    <div class="icons">
-        <a href="https://www.instagram.com/mass_coating?utm_source=qr&igsh=bzV3NTVjbnVzZjA5" i class="fa fa-instagram"></a>
-        <a href="https://www.facebook.com/masscoating?mibextid=ZbWKwL" i class="fa fa-facebook"></a>
-        <a href="https://www.linkedin.com/company/mass-coating/" i class="fa fa-linkedin"></a>
-    </div>
-    <p>©️2015 MASS COATING PVT.LTD AQC MIDDLE EAST LLC</p>
-</section>
+        {% comment %} <!--------footer--> {% endcomment %}
+        <section class="footer">
+            <h3>About Us</h3>
+            <p>MASS COATING is a partnership firm formed since 15th Feb 2016 .The company's registered office is at Bhosari,Pune.<br> The firm is engaged in offering Shot blassting,
+                Powder Coating and Painting job work to automotive,earthmoving and agricultural components for export and domestic buisness.<br>Our plant is at Khalumbare,(Chakan)
+                indistrial area.</p>
+                <div class="icons">
+                    <a href="https://www.instagram.com/mass_coating?utm_source=qr&igsh=bzV3NTVjbnVzZjA5" i class="fa fa-instagram"></a></i>
+                     <a href="https://www.facebook.com/masscoating?mibextid=ZbWKwL" i class="fa fa-facebook"></a></i>
+                      <a href="https://www.linkedin.com/company/mass-coating/" i class="fa fa-linkedin"></a></i>
+                </div>
+                <p>©️2015 MASS COATING PVT.LTD AQC MIDDLE EAST LLC</p>
+        </section>
+        <script>
+            // Hide the preloader after 1 second
+            setTimeout(function () {
+              const preloader = document.querySelector('.preloader');
+              preloader.classList.add('hide');
+            }, 700); // 1000 milliseconds = 1 second
+          </script>
 
-<script>
-    // Hide the preloader after 1 second
-    setTimeout(function () {
-        const preloader = document.querySelector('.preloader');
-        preloader.classList.add('hide');
-    }, 1500); // 1000 milliseconds = 1 second
-</script>
-<script>
-    var navLinks = document.getElementById("navLinks");
 
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-    function hideMenu(){
-        navLinks.style.right = "-200px";
-    }
-</script>
-</body>
+
+            {% comment %} <!--------------javascript -----------> {% endcomment %}
+        <script>
+            var navLinks = document.getElementById("navLinks");
+
+            function showMenu(){
+                navLinks.style.right = "0";
+            }
+            function hideMenu(){
+                navLinks.style.right = "-200px";
+            }
+        </script>
+        {% comment %} <!---------js end--------> {% endcomment %}
+    </body>
 </html>
